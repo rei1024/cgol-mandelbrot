@@ -1,0 +1,1290 @@
+#COMPONENTS U0-7, U10-15, U50-52, B10-16, ADD, SUB, MUL, B2D
+#REGISTERS { "U0": 64, "U50": 16, "U51": 10, "U52": 7, "U10": 1, "B10": [0, "000001"], "U11": 1, "B11": [0, "000001"] }
+# State    Input    Next state    Actions
+# ---------------------------------------
+INITIAL;              ZZ; STATE_1;              NOP
+STATE_1;              *;  STATE_3;              TDEC U0
+STATE_3;              Z;  STATE_2;              NOP
+STATE_3;              NZ; STATE_3;              INC U1, INC U2, TDEC U0
+STATE_2;              *;  STATE_5;              TDEC U2
+STATE_5;              Z;  STATE_4;              NOP
+STATE_5;              NZ; STATE_5;              INC U0, TDEC U2
+STATE_4;              *;  STATE_6;              TDEC U1
+STATE_6;              Z;  STATE_END;            NOP
+STATE_6;              NZ; STATE_7_WHILE_BODY;   NOP
+STATE_7_WHILE_BODY;   *;  STATE_9;              TDEC U0
+STATE_9;              Z;  STATE_8;              NOP
+STATE_9;              NZ; STATE_9;              INC U2, INC U3, TDEC U0
+STATE_8;              *;  STATE_11;             TDEC U3
+STATE_11;             Z;  STATE_10;             NOP
+STATE_11;             NZ; STATE_11;             INC U0, TDEC U3
+STATE_10;             *;  STATE_13;             TDEC U2
+STATE_13;             Z;  STATE_12;             NOP
+STATE_13;             NZ; STATE_14_WHILE_BODY;  NOP
+STATE_14_WHILE_BODY;  *;  STATE_16;             TDEC U50
+STATE_16;             Z;  STATE_15;             NOP
+STATE_16;             NZ; STATE_16;             INC U5, INC U4, TDEC U50
+STATE_15;             *;  STATE_18;             TDEC U4
+STATE_18;             Z;  STATE_17;             NOP
+STATE_18;             NZ; STATE_18;             INC U50, TDEC U4
+STATE_17;             *;  STATE_20;             TDEC U5
+STATE_20;             Z;  STATE_19;             NOP
+STATE_20;             NZ; STATE_21_WHILE_BODY;  NOP
+STATE_21_WHILE_BODY;  *;  STATE_23;             READ B10
+STATE_23;             Z;  STATE_22;             READ B12
+STATE_23;             NZ; STATE_24;             SET B10, READ B12
+STATE_24;             *;  STATE_22;             SET B12, NOP
+STATE_22;             *;  STATE_17;             INC B10, INC B12, NOP
+STATE_19;             *;  STATE_26;             TDEC B10
+STATE_26;             Z;  STATE_25;             NOP
+STATE_26;             NZ; STATE_26;             TDEC B10
+STATE_25;             *;  STATE_28;             TDEC B12
+STATE_28;             Z;  STATE_27;             NOP
+STATE_28;             NZ; STATE_28;             TDEC B12
+STATE_27;             *;  STATE_29;             TDEC U12
+STATE_29;             *;  STATE_31;             TDEC U10
+STATE_31;             Z;  STATE_30;             NOP
+STATE_31;             NZ; STATE_30;             INC U10, INC U12, NOP
+STATE_30;             *;  STATE_33;             TDEC U50
+STATE_33;             Z;  STATE_32;             NOP
+STATE_33;             NZ; STATE_33;             INC U5, INC U4, TDEC U50
+STATE_32;             *;  STATE_35;             TDEC U4
+STATE_35;             Z;  STATE_34;             NOP
+STATE_35;             NZ; STATE_35;             INC U50, TDEC U4
+STATE_34;             *;  STATE_37;             TDEC U5
+STATE_37;             Z;  STATE_36;             NOP
+STATE_37;             NZ; STATE_38_WHILE_BODY;  NOP
+STATE_38_WHILE_BODY;  *;  STATE_40;             READ B11
+STATE_40;             Z;  STATE_39;             READ B13
+STATE_40;             NZ; STATE_41;             SET B11, READ B13
+STATE_41;             *;  STATE_39;             SET B13, NOP
+STATE_39;             *;  STATE_34;             INC B11, INC B13, NOP
+STATE_36;             *;  STATE_43;             TDEC B11
+STATE_43;             Z;  STATE_42;             NOP
+STATE_43;             NZ; STATE_43;             TDEC B11
+STATE_42;             *;  STATE_45;             TDEC B13
+STATE_45;             Z;  STATE_44;             NOP
+STATE_45;             NZ; STATE_45;             TDEC B13
+STATE_44;             *;  STATE_46;             TDEC U13
+STATE_46;             *;  STATE_48;             TDEC U11
+STATE_48;             Z;  STATE_47;             NOP
+STATE_48;             NZ; STATE_47;             INC U11, INC U13, NOP
+STATE_47;             *;  STATE_50;             TDEC U51
+STATE_50;             Z;  STATE_49;             NOP
+STATE_50;             NZ; STATE_50;             INC U3, INC U4, TDEC U51
+STATE_49;             *;  STATE_52;             TDEC U4
+STATE_52;             Z;  STATE_51;             NOP
+STATE_52;             NZ; STATE_52;             INC U51, TDEC U4
+STATE_51;             *;  STATE_54;             TDEC U3
+STATE_54;             Z;  STATE_53;             NOP
+STATE_54;             NZ; STATE_55_WHILE_BODY;  NOP
+STATE_55_WHILE_BODY;  *;  STATE_57;             TDEC U50
+STATE_57;             Z;  STATE_56;             NOP
+STATE_57;             NZ; STATE_57;             INC U5, INC U4, TDEC U50
+STATE_56;             *;  STATE_59;             TDEC U4
+STATE_59;             Z;  STATE_58;             NOP
+STATE_59;             NZ; STATE_59;             INC U50, TDEC U4
+STATE_58;             *;  STATE_61;             TDEC U5
+STATE_61;             Z;  STATE_60;             NOP
+STATE_61;             NZ; STATE_62_WHILE_BODY;  NOP
+STATE_62_WHILE_BODY;  *;  STATE_64;             READ B12
+STATE_64;             Z;  STATE_63;             READ B14
+STATE_64;             NZ; STATE_65;             SET B12, READ B14
+STATE_65;             *;  STATE_63;             SET B14, NOP
+STATE_63;             *;  STATE_58;             INC B12, INC B14, NOP
+STATE_60;             *;  STATE_67;             TDEC B12
+STATE_67;             Z;  STATE_66;             NOP
+STATE_67;             NZ; STATE_67;             TDEC B12
+STATE_66;             *;  STATE_69;             TDEC B14
+STATE_69;             Z;  STATE_68;             NOP
+STATE_69;             NZ; STATE_69;             TDEC B14
+STATE_68;             *;  STATE_70;             TDEC U14
+STATE_70;             *;  STATE_72;             TDEC U50
+STATE_72;             Z;  STATE_71;             NOP
+STATE_72;             NZ; STATE_72;             INC U5, INC U4, TDEC U50
+STATE_71;             *;  STATE_74;             TDEC U4
+STATE_74;             Z;  STATE_73;             NOP
+STATE_74;             NZ; STATE_74;             INC U50, TDEC U4
+STATE_73;             *;  STATE_76;             TDEC U5
+STATE_76;             Z;  STATE_75;             NOP
+STATE_76;             NZ; STATE_77_WHILE_BODY;  NOP
+STATE_77_WHILE_BODY;  *;  STATE_79;             READ B13
+STATE_79;             Z;  STATE_78;             READ B15
+STATE_79;             NZ; STATE_80;             SET B13, READ B15
+STATE_80;             *;  STATE_78;             SET B15, NOP
+STATE_78;             *;  STATE_73;             INC B13, INC B15, NOP
+STATE_75;             *;  STATE_82;             TDEC B13
+STATE_82;             Z;  STATE_81;             NOP
+STATE_82;             NZ; STATE_82;             TDEC B13
+STATE_81;             *;  STATE_84;             TDEC B15
+STATE_84;             Z;  STATE_83;             NOP
+STATE_84;             NZ; STATE_84;             TDEC B15
+STATE_83;             *;  STATE_85;             TDEC U15
+STATE_85;             *;  STATE_87;             TDEC U50
+STATE_87;             Z;  STATE_86;             NOP
+STATE_87;             NZ; STATE_87;             INC U5, INC U4, TDEC U50
+STATE_86;             *;  STATE_89;             TDEC U4
+STATE_89;             Z;  STATE_88;             NOP
+STATE_89;             NZ; STATE_89;             INC U50, TDEC U4
+STATE_88;             *;  STATE_91;             TDEC U5
+STATE_91;             Z;  STATE_90;             NOP
+STATE_91;             NZ; STATE_92_WHILE_BODY;  NOP
+STATE_92_WHILE_BODY;  *;  STATE_94;             READ B14
+STATE_94;             Z;  STATE_93;             READ B16
+STATE_94;             NZ; STATE_95;             SET B14, READ B16
+STATE_95;             *;  STATE_93;             SET B16, NOP
+STATE_93;             *;  STATE_88;             INC B14, INC B16, NOP
+STATE_90;             *;  STATE_97;             TDEC B14
+STATE_97;             Z;  STATE_96;             NOP
+STATE_97;             NZ; STATE_97;             TDEC B14
+STATE_96;             *;  STATE_99;             TDEC B16
+STATE_99;             Z;  STATE_98;             NOP
+STATE_99;             NZ; STATE_99;             TDEC B16
+STATE_98;             *;  STATE_101;            TDEC U50
+STATE_101;            Z;  STATE_100;            NOP
+STATE_101;            NZ; STATE_101;            INC U4, INC U5, TDEC U50
+STATE_100;            *;  STATE_103;            TDEC U5
+STATE_103;            Z;  STATE_102;            NOP
+STATE_103;            NZ; STATE_103;            INC U50, TDEC U5
+STATE_102;            *;  STATE_105;            TDEC U4
+STATE_105;            Z;  STATE_104;            NOP
+STATE_105;            NZ; STATE_106_WHILE_BODY; NOP
+STATE_106_WHILE_BODY; *;  STATE_107;            READ B14
+STATE_107;            *;  STATE_102;            INC B14, NOP
+STATE_104;            *;  STATE_109;            TDEC B14
+STATE_109;            Z;  STATE_108;            NOP
+STATE_109;            NZ; STATE_109;            TDEC B14
+STATE_108;            *;  STATE_111;            TDEC U50
+STATE_111;            Z;  STATE_110;            NOP
+STATE_111;            NZ; STATE_111;            INC U4, INC U5, TDEC U50
+STATE_110;            *;  STATE_113;            TDEC U5
+STATE_113;            Z;  STATE_112;            NOP
+STATE_113;            NZ; STATE_113;            INC U50, TDEC U5
+STATE_112;            *;  STATE_114;            INC U4, NOP
+STATE_114;            *;  STATE_116;            TDEC U4
+STATE_116;            Z;  STATE_115;            NOP
+STATE_116;            NZ; STATE_117_WHILE_BODY; NOP
+STATE_117_WHILE_BODY; *;  STATE_119;            TDEC U7
+STATE_119;            Z;  STATE_118;            NOP
+STATE_119;            NZ; STATE_119;            INC B14, INC U5, TDEC U7
+STATE_118;            *;  STATE_121;            TDEC U5
+STATE_121;            Z;  STATE_120;            NOP
+STATE_121;            NZ; STATE_121;            INC U7, TDEC U5
+STATE_120;            *;  STATE_122;            INC U7, NOP
+STATE_122;            *;  STATE_124;            READ B12
+STATE_124;            Z;  STATE_123;            NOP
+STATE_124;            NZ; STATE_125;            SET B12, NOP
+STATE_125;            *;  STATE_127;            TDEC U50
+STATE_127;            Z;  STATE_126;            NOP
+STATE_127;            NZ; STATE_127;            INC U5, INC U6, TDEC U50
+STATE_126;            *;  STATE_129;            TDEC U6
+STATE_129;            Z;  STATE_128;            NOP
+STATE_129;            NZ; STATE_129;            INC U50, TDEC U6
+STATE_128;            *;  STATE_131;            TDEC U5
+STATE_131;            Z;  STATE_130;            NOP
+STATE_131;            NZ; STATE_132_WHILE_BODY; NOP
+STATE_132_WHILE_BODY; *;  STATE_134;            READ B16
+STATE_134;            Z;  STATE_133;            NOP
+STATE_134;            NZ; STATE_133;            SET B16, ADD A1, NOP
+STATE_133;            *;  STATE_137;            READ B14
+STATE_137;            Z;  STATE_136;            ADD B0
+STATE_137;            NZ; STATE_136;            ADD B1
+STATE_136;            Z;  STATE_135;            NOP
+STATE_136;            NZ; STATE_135;            SET B14, NOP
+STATE_135;            *;  STATE_128;            INC B16, INC B14, NOP
+STATE_130;            *;  STATE_139;            TDEC B16
+STATE_139;            Z;  STATE_138;            NOP
+STATE_139;            NZ; STATE_139;            TDEC B16
+STATE_138;            *;  STATE_140;            TDEC B14
+STATE_140;            Z;  STATE_123;            NOP
+STATE_140;            NZ; STATE_140;            TDEC B14
+STATE_123;            *;  STATE_141;            INC B12, NOP
+STATE_141;            *;  STATE_142;            TDEC B14
+STATE_142;            Z;  STATE_114;            NOP
+STATE_142;            NZ; STATE_142;            TDEC B14
+STATE_115;            *;  STATE_144;            TDEC U7
+STATE_144;            Z;  STATE_143;            NOP
+STATE_144;            NZ; STATE_144;            TDEC U7
+STATE_143;            *;  STATE_146;            TDEC B12
+STATE_146;            Z;  STATE_145;            NOP
+STATE_146;            NZ; STATE_146;            TDEC B12
+STATE_145;            *;  STATE_148;            TDEC B14
+STATE_148;            Z;  STATE_147;            NOP
+STATE_148;            NZ; STATE_148;            TDEC B14
+STATE_147;            *;  STATE_150;            TDEC U50
+STATE_150;            Z;  STATE_149;            NOP
+STATE_150;            NZ; STATE_150;            INC U4, INC U5, TDEC U50
+STATE_149;            *;  STATE_152;            TDEC U5
+STATE_152;            Z;  STATE_151;            NOP
+STATE_152;            NZ; STATE_152;            INC U50, TDEC U5
+STATE_151;            *;  STATE_154;            TDEC U4
+STATE_154;            Z;  STATE_153;            NOP
+STATE_154;            NZ; STATE_155_WHILE_BODY; NOP
+STATE_155_WHILE_BODY; *;  STATE_156;            READ B16
+STATE_156;            *;  STATE_151;            INC B16, NOP
+STATE_153;            *;  STATE_158;            TDEC B16
+STATE_158;            Z;  STATE_157;            NOP
+STATE_158;            NZ; STATE_158;            TDEC B16
+STATE_157;            *;  STATE_160;            TDEC U50
+STATE_160;            Z;  STATE_159;            NOP
+STATE_160;            NZ; STATE_160;            INC U5, INC U4, TDEC U50
+STATE_159;            *;  STATE_162;            TDEC U4
+STATE_162;            Z;  STATE_161;            NOP
+STATE_162;            NZ; STATE_162;            INC U50, TDEC U4
+STATE_161;            *;  STATE_164;            TDEC U5
+STATE_164;            Z;  STATE_163;            NOP
+STATE_164;            NZ; STATE_165_WHILE_BODY; NOP
+STATE_165_WHILE_BODY; *;  STATE_167;            READ B15
+STATE_167;            Z;  STATE_166;            READ B16
+STATE_167;            NZ; STATE_168;            SET B15, READ B16
+STATE_168;            *;  STATE_166;            SET B16, NOP
+STATE_166;            *;  STATE_161;            INC B15, INC B16, NOP
+STATE_163;            *;  STATE_170;            TDEC B15
+STATE_170;            Z;  STATE_169;            NOP
+STATE_170;            NZ; STATE_170;            TDEC B15
+STATE_169;            *;  STATE_172;            TDEC B16
+STATE_172;            Z;  STATE_171;            NOP
+STATE_172;            NZ; STATE_172;            TDEC B16
+STATE_171;            *;  STATE_174;            TDEC U50
+STATE_174;            Z;  STATE_173;            NOP
+STATE_174;            NZ; STATE_174;            INC U4, INC U5, TDEC U50
+STATE_173;            *;  STATE_176;            TDEC U5
+STATE_176;            Z;  STATE_175;            NOP
+STATE_176;            NZ; STATE_176;            INC U50, TDEC U5
+STATE_175;            *;  STATE_178;            TDEC U4
+STATE_178;            Z;  STATE_177;            NOP
+STATE_178;            NZ; STATE_179_WHILE_BODY; NOP
+STATE_179_WHILE_BODY; *;  STATE_180;            READ B15
+STATE_180;            *;  STATE_175;            INC B15, NOP
+STATE_177;            *;  STATE_182;            TDEC B15
+STATE_182;            Z;  STATE_181;            NOP
+STATE_182;            NZ; STATE_182;            TDEC B15
+STATE_181;            *;  STATE_184;            TDEC U50
+STATE_184;            Z;  STATE_183;            NOP
+STATE_184;            NZ; STATE_184;            INC U4, INC U5, TDEC U50
+STATE_183;            *;  STATE_186;            TDEC U5
+STATE_186;            Z;  STATE_185;            NOP
+STATE_186;            NZ; STATE_186;            INC U50, TDEC U5
+STATE_185;            *;  STATE_187;            INC U4, NOP
+STATE_187;            *;  STATE_189;            TDEC U4
+STATE_189;            Z;  STATE_188;            NOP
+STATE_189;            NZ; STATE_190_WHILE_BODY; NOP
+STATE_190_WHILE_BODY; *;  STATE_192;            TDEC U7
+STATE_192;            Z;  STATE_191;            NOP
+STATE_192;            NZ; STATE_192;            INC B15, INC U5, TDEC U7
+STATE_191;            *;  STATE_194;            TDEC U5
+STATE_194;            Z;  STATE_193;            NOP
+STATE_194;            NZ; STATE_194;            INC U7, TDEC U5
+STATE_193;            *;  STATE_195;            INC U7, NOP
+STATE_195;            *;  STATE_197;            READ B13
+STATE_197;            Z;  STATE_196;            NOP
+STATE_197;            NZ; STATE_198;            SET B13, NOP
+STATE_198;            *;  STATE_200;            TDEC U50
+STATE_200;            Z;  STATE_199;            NOP
+STATE_200;            NZ; STATE_200;            INC U5, INC U6, TDEC U50
+STATE_199;            *;  STATE_202;            TDEC U6
+STATE_202;            Z;  STATE_201;            NOP
+STATE_202;            NZ; STATE_202;            INC U50, TDEC U6
+STATE_201;            *;  STATE_204;            TDEC U5
+STATE_204;            Z;  STATE_203;            NOP
+STATE_204;            NZ; STATE_205_WHILE_BODY; NOP
+STATE_205_WHILE_BODY; *;  STATE_207;            READ B16
+STATE_207;            Z;  STATE_206;            NOP
+STATE_207;            NZ; STATE_206;            SET B16, ADD A1, NOP
+STATE_206;            *;  STATE_210;            READ B15
+STATE_210;            Z;  STATE_209;            ADD B0
+STATE_210;            NZ; STATE_209;            ADD B1
+STATE_209;            Z;  STATE_208;            NOP
+STATE_209;            NZ; STATE_208;            SET B15, NOP
+STATE_208;            *;  STATE_201;            INC B16, INC B15, NOP
+STATE_203;            *;  STATE_212;            TDEC B16
+STATE_212;            Z;  STATE_211;            NOP
+STATE_212;            NZ; STATE_212;            TDEC B16
+STATE_211;            *;  STATE_213;            TDEC B15
+STATE_213;            Z;  STATE_196;            NOP
+STATE_213;            NZ; STATE_213;            TDEC B15
+STATE_196;            *;  STATE_214;            INC B13, NOP
+STATE_214;            *;  STATE_215;            TDEC B15
+STATE_215;            Z;  STATE_187;            NOP
+STATE_215;            NZ; STATE_215;            TDEC B15
+STATE_188;            *;  STATE_217;            TDEC U7
+STATE_217;            Z;  STATE_216;            NOP
+STATE_217;            NZ; STATE_217;            TDEC U7
+STATE_216;            *;  STATE_219;            TDEC B13
+STATE_219;            Z;  STATE_218;            NOP
+STATE_219;            NZ; STATE_219;            TDEC B13
+STATE_218;            *;  STATE_221;            TDEC B15
+STATE_221;            Z;  STATE_220;            NOP
+STATE_221;            NZ; STATE_221;            TDEC B15
+STATE_220;            *;  STATE_223;            TDEC U50
+STATE_223;            Z;  STATE_222;            NOP
+STATE_223;            NZ; STATE_223;            INC U4, INC U5, TDEC U50
+STATE_222;            *;  STATE_225;            TDEC U5
+STATE_225;            Z;  STATE_224;            NOP
+STATE_225;            NZ; STATE_225;            INC U50, TDEC U5
+STATE_224;            *;  STATE_227;            TDEC U4
+STATE_227;            Z;  STATE_226;            NOP
+STATE_227;            NZ; STATE_228_WHILE_BODY; NOP
+STATE_228_WHILE_BODY; *;  STATE_229;            READ B16
+STATE_229;            *;  STATE_224;            INC B16, NOP
+STATE_226;            *;  STATE_231;            TDEC B16
+STATE_231;            Z;  STATE_230;            NOP
+STATE_231;            NZ; STATE_231;            TDEC B16
+STATE_230;            *;  STATE_233;            TDEC U50
+STATE_233;            Z;  STATE_232;            NOP
+STATE_233;            NZ; STATE_233;            INC U4, INC U5, TDEC U50
+STATE_232;            *;  STATE_235;            TDEC U5
+STATE_235;            Z;  STATE_234;            NOP
+STATE_235;            NZ; STATE_235;            INC U50, TDEC U5
+STATE_234;            *;  STATE_237;            TDEC U4
+STATE_237;            Z;  STATE_236;            NOP
+STATE_237;            NZ; STATE_238_WHILE_BODY; NOP
+STATE_238_WHILE_BODY; *;  STATE_239;            INC B14, NOP
+STATE_239;            *;  STATE_240;            INC B14, NOP
+STATE_240;            *;  STATE_241;            INC B14, NOP
+STATE_241;            *;  STATE_242;            INC B14, NOP
+STATE_242;            *;  STATE_244;            READ B14
+STATE_244;            Z;  STATE_245;            TDEC B14
+STATE_244;            NZ; STATE_249;            TDEC B14
+STATE_245;            *;  STATE_246;            TDEC B14
+STATE_246;            *;  STATE_247;            TDEC B14
+STATE_247;            *;  STATE_248;            TDEC B14
+STATE_248;            *;  STATE_243;            READ B14
+STATE_249;            *;  STATE_250;            TDEC B14
+STATE_250;            *;  STATE_251;            TDEC B14
+STATE_251;            *;  STATE_252;            TDEC B14
+STATE_252;            *;  STATE_253;            READ B14
+STATE_253;            *;  STATE_243;            SET B14, NOP
+STATE_243;            *;  STATE_234;            INC B14, NOP
+STATE_236;            *;  STATE_255;            TDEC B14
+STATE_255;            Z;  STATE_254;            NOP
+STATE_255;            NZ; STATE_255;            TDEC B14
+STATE_254;            *;  STATE_257;            TDEC U50
+STATE_257;            Z;  STATE_256;            NOP
+STATE_257;            NZ; STATE_257;            INC U4, INC U5, TDEC U50
+STATE_256;            *;  STATE_259;            TDEC U5
+STATE_259;            Z;  STATE_258;            NOP
+STATE_259;            NZ; STATE_259;            INC U50, TDEC U5
+STATE_258;            *;  STATE_261;            TDEC U4
+STATE_261;            Z;  STATE_260;            NOP
+STATE_261;            NZ; STATE_262_WHILE_BODY; NOP
+STATE_262_WHILE_BODY; *;  STATE_263;            INC B15, NOP
+STATE_263;            *;  STATE_264;            INC B15, NOP
+STATE_264;            *;  STATE_265;            INC B15, NOP
+STATE_265;            *;  STATE_266;            INC B15, NOP
+STATE_266;            *;  STATE_268;            READ B15
+STATE_268;            Z;  STATE_269;            TDEC B15
+STATE_268;            NZ; STATE_273;            TDEC B15
+STATE_269;            *;  STATE_270;            TDEC B15
+STATE_270;            *;  STATE_271;            TDEC B15
+STATE_271;            *;  STATE_272;            TDEC B15
+STATE_272;            *;  STATE_267;            READ B15
+STATE_273;            *;  STATE_274;            TDEC B15
+STATE_274;            *;  STATE_275;            TDEC B15
+STATE_275;            *;  STATE_276;            TDEC B15
+STATE_276;            *;  STATE_277;            READ B15
+STATE_277;            *;  STATE_267;            SET B15, NOP
+STATE_267;            *;  STATE_258;            INC B15, NOP
+STATE_260;            *;  STATE_279;            TDEC B15
+STATE_279;            Z;  STATE_278;            NOP
+STATE_279;            NZ; STATE_279;            TDEC B15
+STATE_278;            *;  STATE_281;            TDEC U50
+STATE_281;            Z;  STATE_280;            NOP
+STATE_281;            NZ; STATE_281;            INC U6, INC U5, TDEC U50
+STATE_280;            *;  STATE_283;            TDEC U5
+STATE_283;            Z;  STATE_282;            NOP
+STATE_283;            NZ; STATE_283;            INC U50, TDEC U5
+STATE_282;            *;  STATE_285;            TDEC U52
+STATE_285;            Z;  STATE_284;            NOP
+STATE_285;            NZ; STATE_286_WHILE_BODY; NOP
+STATE_286_WHILE_BODY; *;  STATE_282;            INC U7, INC B14, TDEC U6
+STATE_284;            *;  STATE_288;            TDEC U7
+STATE_288;            Z;  STATE_287;            NOP
+STATE_288;            NZ; STATE_288;            INC U52, TDEC U7
+STATE_287;            *;  STATE_290;            TDEC U6
+STATE_290;            Z;  STATE_289;            NOP
+STATE_290;            NZ; STATE_291_WHILE_BODY; NOP
+STATE_291_WHILE_BODY; *;  STATE_293;            READ B14
+STATE_293;            Z;  STATE_292;            NOP
+STATE_293;            NZ; STATE_294;            SET B14, INC U4, NOP
+STATE_294;            *;  STATE_289;            NOP
+STATE_292;            *;  STATE_287;            INC B14, NOP
+STATE_289;            *;  STATE_296;            TDEC U6
+STATE_296;            Z;  STATE_295;            NOP
+STATE_296;            NZ; STATE_296;            TDEC U6
+STATE_295;            *;  STATE_298;            TDEC B14
+STATE_298;            Z;  STATE_297;            NOP
+STATE_298;            NZ; STATE_298;            TDEC B14
+STATE_297;            *;  STATE_300;            TDEC U4
+STATE_300;            Z;  STATE_299;            NOP
+STATE_300;            NZ; STATE_301;            INC U4, NOP
+STATE_301;            *;  STATE_53;             NOP
+STATE_299;            *;  STATE_303;            TDEC U50
+STATE_303;            Z;  STATE_302;            NOP
+STATE_303;            NZ; STATE_303;            INC U6, INC U5, TDEC U50
+STATE_302;            *;  STATE_305;            TDEC U5
+STATE_305;            Z;  STATE_304;            NOP
+STATE_305;            NZ; STATE_305;            INC U50, TDEC U5
+STATE_304;            *;  STATE_307;            TDEC U52
+STATE_307;            Z;  STATE_306;            NOP
+STATE_307;            NZ; STATE_308_WHILE_BODY; NOP
+STATE_308_WHILE_BODY; *;  STATE_304;            INC U7, INC B15, TDEC U6
+STATE_306;            *;  STATE_310;            TDEC U7
+STATE_310;            Z;  STATE_309;            NOP
+STATE_310;            NZ; STATE_310;            INC U52, TDEC U7
+STATE_309;            *;  STATE_312;            TDEC U6
+STATE_312;            Z;  STATE_311;            NOP
+STATE_312;            NZ; STATE_313_WHILE_BODY; NOP
+STATE_313_WHILE_BODY; *;  STATE_315;            READ B15
+STATE_315;            Z;  STATE_314;            NOP
+STATE_315;            NZ; STATE_316;            SET B15, INC U4, NOP
+STATE_316;            *;  STATE_311;            NOP
+STATE_314;            *;  STATE_309;            INC B15, NOP
+STATE_311;            *;  STATE_318;            TDEC U6
+STATE_318;            Z;  STATE_317;            NOP
+STATE_318;            NZ; STATE_318;            TDEC U6
+STATE_317;            *;  STATE_320;            TDEC B15
+STATE_320;            Z;  STATE_319;            NOP
+STATE_320;            NZ; STATE_320;            TDEC B15
+STATE_319;            *;  STATE_322;            TDEC U4
+STATE_322;            Z;  STATE_321;            NOP
+STATE_322;            NZ; STATE_323;            INC U4, NOP
+STATE_323;            *;  STATE_53;             NOP
+STATE_321;            *;  STATE_325;            TDEC U15
+STATE_325;            Z;  STATE_324;            INC U15, NOP
+STATE_325;            NZ; STATE_324;            NOP
+STATE_324;            *;  STATE_327;            TDEC U15
+STATE_327;            Z;  STATE_328;            TDEC U14
+STATE_327;            NZ; STATE_353;            INC U15, NOP
+STATE_328;            Z;  STATE_326;            NOP
+STATE_328;            NZ; STATE_330;            NOP
+STATE_330;            *;  STATE_331;            TDEC U50
+STATE_331;            Z;  STATE_329;            NOP
+STATE_331;            NZ; STATE_331;            INC U5, INC U6, TDEC U50
+STATE_329;            *;  STATE_333;            TDEC U6
+STATE_333;            Z;  STATE_332;            NOP
+STATE_333;            NZ; STATE_333;            INC U50, TDEC U6
+STATE_332;            *;  STATE_335;            TDEC U5
+STATE_335;            Z;  STATE_334;            NOP
+STATE_335;            NZ; STATE_335;            INC B15, INC B14, TDEC U5
+STATE_334;            *;  STATE_337;            READ B14
+STATE_337;            Z;  STATE_338;            READ B15
+STATE_337;            NZ; STATE_342;            SET B14, NOP
+STATE_338;            Z;  STATE_339;            TDEC B15
+STATE_338;            NZ; STATE_341;            SET B15, INC U4, NOP
+STATE_339;            *;  STATE_340;            TDEC B14
+STATE_340;            Z;  STATE_336;            NOP
+STATE_340;            NZ; STATE_334;            NOP
+STATE_341;            *;  STATE_336;            NOP
+STATE_342;            *;  STATE_343;            READ B15
+STATE_343;            Z;  STATE_336;            NOP
+STATE_343;            NZ; STATE_344;            SET B15, NOP
+STATE_344;            *;  STATE_345;            TDEC B15
+STATE_345;            *;  STATE_346;            TDEC B14
+STATE_346;            Z;  STATE_336;            NOP
+STATE_346;            NZ; STATE_334;            NOP
+STATE_336;            *;  STATE_348;            TDEC B15
+STATE_348;            Z;  STATE_347;            NOP
+STATE_348;            NZ; STATE_348;            TDEC B15
+STATE_347;            *;  STATE_350;            TDEC B14
+STATE_350;            Z;  STATE_349;            NOP
+STATE_350;            NZ; STATE_350;            TDEC B14
+STATE_349;            *;  STATE_351;            TDEC U4
+STATE_351;            Z;  STATE_352;            INC U14, INC U7, NOP
+STATE_351;            NZ; STATE_326;            INC U7, NOP
+STATE_352;            *;  STATE_326;            INC U7, NOP
+STATE_353;            *;  STATE_354;            TDEC U14
+STATE_354;            Z;  STATE_356;            NOP
+STATE_354;            NZ; STATE_326;            INC U14, NOP
+STATE_356;            *;  STATE_357;            TDEC U50
+STATE_357;            Z;  STATE_355;            NOP
+STATE_357;            NZ; STATE_357;            INC U5, INC U6, TDEC U50
+STATE_355;            *;  STATE_359;            TDEC U6
+STATE_359;            Z;  STATE_358;            NOP
+STATE_359;            NZ; STATE_359;            INC U50, TDEC U6
+STATE_358;            *;  STATE_361;            TDEC U5
+STATE_361;            Z;  STATE_360;            NOP
+STATE_361;            NZ; STATE_361;            INC B15, INC B14, TDEC U5
+STATE_360;            *;  STATE_363;            READ B14
+STATE_363;            Z;  STATE_364;            READ B15
+STATE_363;            NZ; STATE_368;            SET B14, NOP
+STATE_364;            Z;  STATE_365;            TDEC B15
+STATE_364;            NZ; STATE_367;            SET B15, INC U4, NOP
+STATE_365;            *;  STATE_366;            TDEC B14
+STATE_366;            Z;  STATE_362;            NOP
+STATE_366;            NZ; STATE_360;            NOP
+STATE_367;            *;  STATE_362;            NOP
+STATE_368;            *;  STATE_369;            READ B15
+STATE_369;            Z;  STATE_362;            NOP
+STATE_369;            NZ; STATE_370;            SET B15, NOP
+STATE_370;            *;  STATE_371;            TDEC B15
+STATE_371;            *;  STATE_372;            TDEC B14
+STATE_372;            Z;  STATE_362;            NOP
+STATE_372;            NZ; STATE_360;            NOP
+STATE_362;            *;  STATE_374;            TDEC B15
+STATE_374;            Z;  STATE_373;            NOP
+STATE_374;            NZ; STATE_374;            TDEC B15
+STATE_373;            *;  STATE_376;            TDEC B14
+STATE_376;            Z;  STATE_375;            NOP
+STATE_376;            NZ; STATE_376;            TDEC B14
+STATE_375;            *;  STATE_377;            TDEC U4
+STATE_377;            Z;  STATE_378;            INC U7, NOP
+STATE_377;            NZ; STATE_326;            INC U14, INC U7, NOP
+STATE_378;            *;  STATE_326;            INC U7, NOP
+STATE_326;            *;  STATE_380;            TDEC U7
+STATE_380;            Z;  STATE_382;            NOP
+STATE_380;            NZ; STATE_397;            TDEC U7
+STATE_382;            *;  STATE_383;            TDEC U50
+STATE_383;            Z;  STATE_381;            NOP
+STATE_383;            NZ; STATE_383;            INC U4, INC U5, TDEC U50
+STATE_381;            *;  STATE_385;            TDEC U5
+STATE_385;            Z;  STATE_384;            NOP
+STATE_385;            NZ; STATE_385;            INC U50, TDEC U5
+STATE_384;            *;  STATE_387;            TDEC U4
+STATE_387;            Z;  STATE_386;            NOP
+STATE_387;            NZ; STATE_388_WHILE_BODY; NOP
+STATE_388_WHILE_BODY; *;  STATE_390;            READ B15
+STATE_390;            Z;  STATE_389;            NOP
+STATE_390;            NZ; STATE_389;            SET B15, ADD A1, NOP
+STATE_389;            *;  STATE_393;            READ B14
+STATE_393;            Z;  STATE_392;            ADD B0
+STATE_393;            NZ; STATE_392;            ADD B1
+STATE_392;            Z;  STATE_391;            NOP
+STATE_392;            NZ; STATE_391;            SET B14, NOP
+STATE_391;            *;  STATE_384;            INC B15, INC B14, NOP
+STATE_386;            *;  STATE_395;            TDEC B15
+STATE_395;            Z;  STATE_394;            NOP
+STATE_395;            NZ; STATE_395;            TDEC B15
+STATE_394;            *;  STATE_396;            TDEC B14
+STATE_396;            Z;  STATE_379;            NOP
+STATE_396;            NZ; STATE_396;            TDEC B14
+STATE_397;            Z;  STATE_399;            NOP
+STATE_397;            NZ; STATE_415;            NOP
+STATE_399;            *;  STATE_400;            TDEC U50
+STATE_400;            Z;  STATE_398;            NOP
+STATE_400;            NZ; STATE_400;            INC U5, INC U4, TDEC U50
+STATE_398;            *;  STATE_402;            TDEC U4
+STATE_402;            Z;  STATE_401;            NOP
+STATE_402;            NZ; STATE_402;            INC U50, TDEC U4
+STATE_401;            *;  STATE_404;            TDEC U5
+STATE_404;            Z;  STATE_403;            NOP
+STATE_404;            NZ; STATE_405_WHILE_BODY; NOP
+STATE_405_WHILE_BODY; *;  STATE_407;            READ B15
+STATE_407;            Z;  STATE_406;            NOP
+STATE_407;            NZ; STATE_406;            SET B15, SUB A1, NOP
+STATE_406;            *;  STATE_410;            READ B14
+STATE_410;            Z;  STATE_409;            SUB B0
+STATE_410;            NZ; STATE_409;            SUB B1
+STATE_409;            Z;  STATE_408;            NOP
+STATE_409;            NZ; STATE_408;            SET B14, NOP
+STATE_408;            *;  STATE_401;            INC B15, INC B14, NOP
+STATE_403;            *;  STATE_412;            TDEC B15
+STATE_412;            Z;  STATE_411;            NOP
+STATE_412;            NZ; STATE_412;            TDEC B15
+STATE_411;            *;  STATE_413;            TDEC B14
+STATE_413;            Z;  STATE_379;            NOP
+STATE_413;            NZ; STATE_413;            TDEC B14
+STATE_415;            *;  STATE_416;            TDEC U50
+STATE_416;            Z;  STATE_414;            NOP
+STATE_416;            NZ; STATE_416;            INC U5, INC U4, TDEC U50
+STATE_414;            *;  STATE_418;            TDEC U4
+STATE_418;            Z;  STATE_417;            NOP
+STATE_418;            NZ; STATE_418;            INC U50, TDEC U4
+STATE_417;            *;  STATE_420;            TDEC U5
+STATE_420;            Z;  STATE_419;            NOP
+STATE_420;            NZ; STATE_421_WHILE_BODY; NOP
+STATE_421_WHILE_BODY; *;  STATE_423;            READ B14
+STATE_423;            Z;  STATE_422;            NOP
+STATE_423;            NZ; STATE_422;            SUB A1, NOP
+STATE_422;            *;  STATE_426;            READ B15
+STATE_426;            Z;  STATE_425;            SUB B0
+STATE_426;            NZ; STATE_425;            SET B15, SUB B1
+STATE_425;            Z;  STATE_424;            NOP
+STATE_425;            NZ; STATE_424;            SET B14, NOP
+STATE_424;            *;  STATE_417;            INC B14, INC B15, NOP
+STATE_419;            *;  STATE_428;            TDEC B14
+STATE_428;            Z;  STATE_427;            NOP
+STATE_428;            NZ; STATE_428;            TDEC B14
+STATE_427;            *;  STATE_429;            TDEC B15
+STATE_429;            Z;  STATE_379;            NOP
+STATE_429;            NZ; STATE_429;            TDEC B15
+STATE_379;            *;  STATE_431;            TDEC U50
+STATE_431;            Z;  STATE_430;            NOP
+STATE_431;            NZ; STATE_431;            INC U5, INC U6, TDEC U50
+STATE_430;            *;  STATE_433;            TDEC U6
+STATE_433;            Z;  STATE_432;            NOP
+STATE_433;            NZ; STATE_433;            INC U50, TDEC U6
+STATE_432;            *;  STATE_435;            TDEC U5
+STATE_435;            Z;  STATE_434;            NOP
+STATE_435;            NZ; STATE_436_WHILE_BODY; NOP
+STATE_436_WHILE_BODY; *;  STATE_438;            READ B14
+STATE_438;            Z;  STATE_437;            NOP
+STATE_438;            NZ; STATE_439;            SET B14, INC U4, NOP
+STATE_439;            *;  STATE_434;            NOP
+STATE_437;            *;  STATE_432;            INC B14, NOP
+STATE_434;            *;  STATE_441;            TDEC U5
+STATE_441;            Z;  STATE_440;            NOP
+STATE_441;            NZ; STATE_441;            TDEC U5
+STATE_440;            *;  STATE_443;            TDEC B14
+STATE_443;            Z;  STATE_442;            NOP
+STATE_443;            NZ; STATE_443;            TDEC B14
+STATE_442;            *;  STATE_445;            TDEC U4
+STATE_445;            Z;  STATE_444;            TDEC U14
+STATE_445;            NZ; STATE_444;            NOP
+STATE_444;            *;  STATE_447;            TDEC U10
+STATE_447;            Z;  STATE_448;            TDEC U14
+STATE_447;            NZ; STATE_473;            INC U10, NOP
+STATE_448;            Z;  STATE_446;            NOP
+STATE_448;            NZ; STATE_450;            NOP
+STATE_450;            *;  STATE_451;            TDEC U50
+STATE_451;            Z;  STATE_449;            NOP
+STATE_451;            NZ; STATE_451;            INC U5, INC U6, TDEC U50
+STATE_449;            *;  STATE_453;            TDEC U6
+STATE_453;            Z;  STATE_452;            NOP
+STATE_453;            NZ; STATE_453;            INC U50, TDEC U6
+STATE_452;            *;  STATE_455;            TDEC U5
+STATE_455;            Z;  STATE_454;            NOP
+STATE_455;            NZ; STATE_455;            INC B10, INC B14, TDEC U5
+STATE_454;            *;  STATE_457;            READ B14
+STATE_457;            Z;  STATE_458;            READ B10
+STATE_457;            NZ; STATE_462;            SET B14, NOP
+STATE_458;            Z;  STATE_459;            TDEC B10
+STATE_458;            NZ; STATE_461;            SET B10, INC U4, NOP
+STATE_459;            *;  STATE_460;            TDEC B14
+STATE_460;            Z;  STATE_456;            NOP
+STATE_460;            NZ; STATE_454;            NOP
+STATE_461;            *;  STATE_456;            NOP
+STATE_462;            *;  STATE_463;            READ B10
+STATE_463;            Z;  STATE_456;            NOP
+STATE_463;            NZ; STATE_464;            SET B10, NOP
+STATE_464;            *;  STATE_465;            TDEC B10
+STATE_465;            *;  STATE_466;            TDEC B14
+STATE_466;            Z;  STATE_456;            NOP
+STATE_466;            NZ; STATE_454;            NOP
+STATE_456;            *;  STATE_468;            TDEC B10
+STATE_468;            Z;  STATE_467;            NOP
+STATE_468;            NZ; STATE_468;            TDEC B10
+STATE_467;            *;  STATE_470;            TDEC B14
+STATE_470;            Z;  STATE_469;            NOP
+STATE_470;            NZ; STATE_470;            TDEC B14
+STATE_469;            *;  STATE_471;            TDEC U4
+STATE_471;            Z;  STATE_472;            INC U14, INC U7, NOP
+STATE_471;            NZ; STATE_446;            INC U7, NOP
+STATE_472;            *;  STATE_446;            INC U7, NOP
+STATE_473;            *;  STATE_474;            TDEC U14
+STATE_474;            Z;  STATE_476;            NOP
+STATE_474;            NZ; STATE_446;            INC U14, NOP
+STATE_476;            *;  STATE_477;            TDEC U50
+STATE_477;            Z;  STATE_475;            NOP
+STATE_477;            NZ; STATE_477;            INC U5, INC U6, TDEC U50
+STATE_475;            *;  STATE_479;            TDEC U6
+STATE_479;            Z;  STATE_478;            NOP
+STATE_479;            NZ; STATE_479;            INC U50, TDEC U6
+STATE_478;            *;  STATE_481;            TDEC U5
+STATE_481;            Z;  STATE_480;            NOP
+STATE_481;            NZ; STATE_481;            INC B10, INC B14, TDEC U5
+STATE_480;            *;  STATE_483;            READ B14
+STATE_483;            Z;  STATE_484;            READ B10
+STATE_483;            NZ; STATE_488;            SET B14, NOP
+STATE_484;            Z;  STATE_485;            TDEC B10
+STATE_484;            NZ; STATE_487;            SET B10, INC U4, NOP
+STATE_485;            *;  STATE_486;            TDEC B14
+STATE_486;            Z;  STATE_482;            NOP
+STATE_486;            NZ; STATE_480;            NOP
+STATE_487;            *;  STATE_482;            NOP
+STATE_488;            *;  STATE_489;            READ B10
+STATE_489;            Z;  STATE_482;            NOP
+STATE_489;            NZ; STATE_490;            SET B10, NOP
+STATE_490;            *;  STATE_491;            TDEC B10
+STATE_491;            *;  STATE_492;            TDEC B14
+STATE_492;            Z;  STATE_482;            NOP
+STATE_492;            NZ; STATE_480;            NOP
+STATE_482;            *;  STATE_494;            TDEC B10
+STATE_494;            Z;  STATE_493;            NOP
+STATE_494;            NZ; STATE_494;            TDEC B10
+STATE_493;            *;  STATE_496;            TDEC B14
+STATE_496;            Z;  STATE_495;            NOP
+STATE_496;            NZ; STATE_496;            TDEC B14
+STATE_495;            *;  STATE_497;            TDEC U4
+STATE_497;            Z;  STATE_498;            INC U7, NOP
+STATE_497;            NZ; STATE_446;            INC U14, INC U7, NOP
+STATE_498;            *;  STATE_446;            INC U7, NOP
+STATE_446;            *;  STATE_500;            TDEC U7
+STATE_500;            Z;  STATE_502;            NOP
+STATE_500;            NZ; STATE_517;            TDEC U7
+STATE_502;            *;  STATE_503;            TDEC U50
+STATE_503;            Z;  STATE_501;            NOP
+STATE_503;            NZ; STATE_503;            INC U4, INC U5, TDEC U50
+STATE_501;            *;  STATE_505;            TDEC U5
+STATE_505;            Z;  STATE_504;            NOP
+STATE_505;            NZ; STATE_505;            INC U50, TDEC U5
+STATE_504;            *;  STATE_507;            TDEC U4
+STATE_507;            Z;  STATE_506;            NOP
+STATE_507;            NZ; STATE_508_WHILE_BODY; NOP
+STATE_508_WHILE_BODY; *;  STATE_510;            READ B10
+STATE_510;            Z;  STATE_509;            NOP
+STATE_510;            NZ; STATE_509;            SET B10, ADD A1, NOP
+STATE_509;            *;  STATE_513;            READ B14
+STATE_513;            Z;  STATE_512;            ADD B0
+STATE_513;            NZ; STATE_512;            ADD B1
+STATE_512;            Z;  STATE_511;            NOP
+STATE_512;            NZ; STATE_511;            SET B14, NOP
+STATE_511;            *;  STATE_504;            INC B10, INC B14, NOP
+STATE_506;            *;  STATE_515;            TDEC B10
+STATE_515;            Z;  STATE_514;            NOP
+STATE_515;            NZ; STATE_515;            TDEC B10
+STATE_514;            *;  STATE_516;            TDEC B14
+STATE_516;            Z;  STATE_499;            NOP
+STATE_516;            NZ; STATE_516;            TDEC B14
+STATE_517;            Z;  STATE_519;            NOP
+STATE_517;            NZ; STATE_535;            NOP
+STATE_519;            *;  STATE_520;            TDEC U50
+STATE_520;            Z;  STATE_518;            NOP
+STATE_520;            NZ; STATE_520;            INC U5, INC U4, TDEC U50
+STATE_518;            *;  STATE_522;            TDEC U4
+STATE_522;            Z;  STATE_521;            NOP
+STATE_522;            NZ; STATE_522;            INC U50, TDEC U4
+STATE_521;            *;  STATE_524;            TDEC U5
+STATE_524;            Z;  STATE_523;            NOP
+STATE_524;            NZ; STATE_525_WHILE_BODY; NOP
+STATE_525_WHILE_BODY; *;  STATE_527;            READ B10
+STATE_527;            Z;  STATE_526;            NOP
+STATE_527;            NZ; STATE_526;            SET B10, SUB A1, NOP
+STATE_526;            *;  STATE_530;            READ B14
+STATE_530;            Z;  STATE_529;            SUB B0
+STATE_530;            NZ; STATE_529;            SUB B1
+STATE_529;            Z;  STATE_528;            NOP
+STATE_529;            NZ; STATE_528;            SET B14, NOP
+STATE_528;            *;  STATE_521;            INC B10, INC B14, NOP
+STATE_523;            *;  STATE_532;            TDEC B10
+STATE_532;            Z;  STATE_531;            NOP
+STATE_532;            NZ; STATE_532;            TDEC B10
+STATE_531;            *;  STATE_533;            TDEC B14
+STATE_533;            Z;  STATE_499;            NOP
+STATE_533;            NZ; STATE_533;            TDEC B14
+STATE_535;            *;  STATE_536;            TDEC U50
+STATE_536;            Z;  STATE_534;            NOP
+STATE_536;            NZ; STATE_536;            INC U5, INC U4, TDEC U50
+STATE_534;            *;  STATE_538;            TDEC U4
+STATE_538;            Z;  STATE_537;            NOP
+STATE_538;            NZ; STATE_538;            INC U50, TDEC U4
+STATE_537;            *;  STATE_540;            TDEC U5
+STATE_540;            Z;  STATE_539;            NOP
+STATE_540;            NZ; STATE_541_WHILE_BODY; NOP
+STATE_541_WHILE_BODY; *;  STATE_543;            READ B14
+STATE_543;            Z;  STATE_542;            NOP
+STATE_543;            NZ; STATE_542;            SUB A1, NOP
+STATE_542;            *;  STATE_546;            READ B10
+STATE_546;            Z;  STATE_545;            SUB B0
+STATE_546;            NZ; STATE_545;            SET B10, SUB B1
+STATE_545;            Z;  STATE_544;            NOP
+STATE_545;            NZ; STATE_544;            SET B14, NOP
+STATE_544;            *;  STATE_537;            INC B14, INC B10, NOP
+STATE_539;            *;  STATE_548;            TDEC B14
+STATE_548;            Z;  STATE_547;            NOP
+STATE_548;            NZ; STATE_548;            TDEC B14
+STATE_547;            *;  STATE_549;            TDEC B10
+STATE_549;            Z;  STATE_499;            NOP
+STATE_549;            NZ; STATE_549;            TDEC B10
+STATE_499;            *;  STATE_551;            TDEC U50
+STATE_551;            Z;  STATE_550;            NOP
+STATE_551;            NZ; STATE_551;            INC U5, INC U6, TDEC U50
+STATE_550;            *;  STATE_553;            TDEC U6
+STATE_553;            Z;  STATE_552;            NOP
+STATE_553;            NZ; STATE_553;            INC U50, TDEC U6
+STATE_552;            *;  STATE_555;            TDEC U5
+STATE_555;            Z;  STATE_554;            NOP
+STATE_555;            NZ; STATE_556_WHILE_BODY; NOP
+STATE_556_WHILE_BODY; *;  STATE_558;            READ B14
+STATE_558;            Z;  STATE_557;            NOP
+STATE_558;            NZ; STATE_559;            SET B14, INC U4, NOP
+STATE_559;            *;  STATE_554;            NOP
+STATE_557;            *;  STATE_552;            INC B14, NOP
+STATE_554;            *;  STATE_561;            TDEC U5
+STATE_561;            Z;  STATE_560;            NOP
+STATE_561;            NZ; STATE_561;            TDEC U5
+STATE_560;            *;  STATE_563;            TDEC B14
+STATE_563;            Z;  STATE_562;            NOP
+STATE_563;            NZ; STATE_563;            TDEC B14
+STATE_562;            *;  STATE_565;            TDEC U4
+STATE_565;            Z;  STATE_564;            TDEC U14
+STATE_565;            NZ; STATE_564;            NOP
+STATE_564;            *;  STATE_567;            TDEC U50
+STATE_567;            Z;  STATE_566;            NOP
+STATE_567;            NZ; STATE_567;            INC U5, INC U4, TDEC U50
+STATE_566;            *;  STATE_569;            TDEC U4
+STATE_569;            Z;  STATE_568;            NOP
+STATE_569;            NZ; STATE_569;            INC U50, TDEC U4
+STATE_568;            *;  STATE_571;            TDEC U5
+STATE_571;            Z;  STATE_570;            NOP
+STATE_571;            NZ; STATE_572_WHILE_BODY; NOP
+STATE_572_WHILE_BODY; *;  STATE_574;            READ B13
+STATE_574;            Z;  STATE_573;            READ B16
+STATE_574;            NZ; STATE_575;            SET B13, READ B16
+STATE_575;            *;  STATE_573;            SET B16, NOP
+STATE_573;            *;  STATE_568;            INC B13, INC B16, NOP
+STATE_570;            *;  STATE_577;            TDEC B13
+STATE_577;            Z;  STATE_576;            NOP
+STATE_577;            NZ; STATE_577;            TDEC B13
+STATE_576;            *;  STATE_579;            TDEC B16
+STATE_579;            Z;  STATE_578;            NOP
+STATE_579;            NZ; STATE_579;            TDEC B16
+STATE_578;            *;  STATE_581;            TDEC U50
+STATE_581;            Z;  STATE_580;            NOP
+STATE_581;            NZ; STATE_581;            INC U4, INC U5, TDEC U50
+STATE_580;            *;  STATE_583;            TDEC U5
+STATE_583;            Z;  STATE_582;            NOP
+STATE_583;            NZ; STATE_583;            INC U50, TDEC U5
+STATE_582;            *;  STATE_585;            TDEC U4
+STATE_585;            Z;  STATE_584;            NOP
+STATE_585;            NZ; STATE_586_WHILE_BODY; NOP
+STATE_586_WHILE_BODY; *;  STATE_587;            READ B13
+STATE_587;            *;  STATE_582;            INC B13, NOP
+STATE_584;            *;  STATE_589;            TDEC B13
+STATE_589;            Z;  STATE_588;            NOP
+STATE_589;            NZ; STATE_589;            TDEC B13
+STATE_588;            *;  STATE_591;            TDEC U50
+STATE_591;            Z;  STATE_590;            NOP
+STATE_591;            NZ; STATE_591;            INC U4, INC U5, TDEC U50
+STATE_590;            *;  STATE_593;            TDEC U5
+STATE_593;            Z;  STATE_592;            NOP
+STATE_593;            NZ; STATE_593;            INC U50, TDEC U5
+STATE_592;            *;  STATE_594;            INC U4, NOP
+STATE_594;            *;  STATE_596;            TDEC U4
+STATE_596;            Z;  STATE_595;            NOP
+STATE_596;            NZ; STATE_597_WHILE_BODY; NOP
+STATE_597_WHILE_BODY; *;  STATE_599;            TDEC U7
+STATE_599;            Z;  STATE_598;            NOP
+STATE_599;            NZ; STATE_599;            INC B13, INC U5, TDEC U7
+STATE_598;            *;  STATE_601;            TDEC U5
+STATE_601;            Z;  STATE_600;            NOP
+STATE_601;            NZ; STATE_601;            INC U7, TDEC U5
+STATE_600;            *;  STATE_602;            INC U7, NOP
+STATE_602;            *;  STATE_604;            READ B12
+STATE_604;            Z;  STATE_603;            NOP
+STATE_604;            NZ; STATE_605;            SET B12, NOP
+STATE_605;            *;  STATE_607;            TDEC U50
+STATE_607;            Z;  STATE_606;            NOP
+STATE_607;            NZ; STATE_607;            INC U5, INC U6, TDEC U50
+STATE_606;            *;  STATE_609;            TDEC U6
+STATE_609;            Z;  STATE_608;            NOP
+STATE_609;            NZ; STATE_609;            INC U50, TDEC U6
+STATE_608;            *;  STATE_611;            TDEC U5
+STATE_611;            Z;  STATE_610;            NOP
+STATE_611;            NZ; STATE_612_WHILE_BODY; NOP
+STATE_612_WHILE_BODY; *;  STATE_614;            READ B16
+STATE_614;            Z;  STATE_613;            NOP
+STATE_614;            NZ; STATE_613;            SET B16, ADD A1, NOP
+STATE_613;            *;  STATE_617;            READ B13
+STATE_617;            Z;  STATE_616;            ADD B0
+STATE_617;            NZ; STATE_616;            ADD B1
+STATE_616;            Z;  STATE_615;            NOP
+STATE_616;            NZ; STATE_615;            SET B13, NOP
+STATE_615;            *;  STATE_608;            INC B16, INC B13, NOP
+STATE_610;            *;  STATE_619;            TDEC B16
+STATE_619;            Z;  STATE_618;            NOP
+STATE_619;            NZ; STATE_619;            TDEC B16
+STATE_618;            *;  STATE_620;            TDEC B13
+STATE_620;            Z;  STATE_603;            NOP
+STATE_620;            NZ; STATE_620;            TDEC B13
+STATE_603;            *;  STATE_621;            INC B12, NOP
+STATE_621;            *;  STATE_622;            TDEC B13
+STATE_622;            Z;  STATE_594;            NOP
+STATE_622;            NZ; STATE_622;            TDEC B13
+STATE_595;            *;  STATE_624;            TDEC U7
+STATE_624;            Z;  STATE_623;            NOP
+STATE_624;            NZ; STATE_624;            TDEC U7
+STATE_623;            *;  STATE_626;            TDEC B12
+STATE_626;            Z;  STATE_625;            NOP
+STATE_626;            NZ; STATE_626;            TDEC B12
+STATE_625;            *;  STATE_628;            TDEC B13
+STATE_628;            Z;  STATE_627;            NOP
+STATE_628;            NZ; STATE_628;            TDEC B13
+STATE_627;            *;  STATE_630;            TDEC U50
+STATE_630;            Z;  STATE_629;            NOP
+STATE_630;            NZ; STATE_630;            INC U4, INC U5, TDEC U50
+STATE_629;            *;  STATE_632;            TDEC U5
+STATE_632;            Z;  STATE_631;            NOP
+STATE_632;            NZ; STATE_632;            INC U50, TDEC U5
+STATE_631;            *;  STATE_634;            TDEC U4
+STATE_634;            Z;  STATE_633;            NOP
+STATE_634;            NZ; STATE_635_WHILE_BODY; NOP
+STATE_635_WHILE_BODY; *;  STATE_636;            READ B16
+STATE_636;            *;  STATE_631;            INC B16, NOP
+STATE_633;            *;  STATE_638;            TDEC B16
+STATE_638;            Z;  STATE_637;            NOP
+STATE_638;            NZ; STATE_638;            TDEC B16
+STATE_637;            *;  STATE_640;            TDEC U13
+STATE_640;            Z;  STATE_641;            TDEC U12
+STATE_640;            NZ; STATE_642;            TDEC U12
+STATE_641;            Z;  STATE_639;            NOP
+STATE_641;            NZ; STATE_639;            INC U12, INC U13, NOP
+STATE_642;            Z;  STATE_639;            INC U13, NOP
+STATE_642;            NZ; STATE_639;            INC U12, NOP
+STATE_639;            *;  STATE_644;            TDEC U50
+STATE_644;            Z;  STATE_643;            NOP
+STATE_644;            NZ; STATE_644;            INC U4, INC U5, TDEC U50
+STATE_643;            *;  STATE_646;            TDEC U5
+STATE_646;            Z;  STATE_645;            NOP
+STATE_646;            NZ; STATE_646;            INC U50, TDEC U5
+STATE_645;            *;  STATE_648;            TDEC U4
+STATE_648;            Z;  STATE_647;            NOP
+STATE_648;            NZ; STATE_649_WHILE_BODY; NOP
+STATE_649_WHILE_BODY; *;  STATE_650;            INC B13, NOP
+STATE_650;            *;  STATE_651;            INC B13, NOP
+STATE_651;            *;  STATE_652;            INC B13, NOP
+STATE_652;            *;  STATE_654;            READ B13
+STATE_654;            Z;  STATE_655;            TDEC B13
+STATE_654;            NZ; STATE_658;            TDEC B13
+STATE_655;            *;  STATE_656;            TDEC B13
+STATE_656;            *;  STATE_657;            TDEC B13
+STATE_657;            *;  STATE_653;            READ B13
+STATE_658;            *;  STATE_659;            TDEC B13
+STATE_659;            *;  STATE_660;            TDEC B13
+STATE_660;            *;  STATE_661;            READ B13
+STATE_661;            *;  STATE_653;            SET B13, NOP
+STATE_653;            *;  STATE_645;            INC B13, NOP
+STATE_647;            *;  STATE_663;            TDEC B13
+STATE_663;            Z;  STATE_662;            NOP
+STATE_663;            NZ; STATE_663;            TDEC B13
+STATE_662;            *;  STATE_665;            TDEC U50
+STATE_665;            Z;  STATE_664;            NOP
+STATE_665;            NZ; STATE_665;            INC U5, INC U6, TDEC U50
+STATE_664;            *;  STATE_667;            TDEC U6
+STATE_667;            Z;  STATE_666;            NOP
+STATE_667;            NZ; STATE_667;            INC U50, TDEC U6
+STATE_666;            *;  STATE_669;            TDEC U5
+STATE_669;            Z;  STATE_668;            NOP
+STATE_669;            NZ; STATE_670_WHILE_BODY; NOP
+STATE_670_WHILE_BODY; *;  STATE_672;            READ B13
+STATE_672;            Z;  STATE_671;            NOP
+STATE_672;            NZ; STATE_673;            SET B13, INC U4, NOP
+STATE_673;            *;  STATE_668;            NOP
+STATE_671;            *;  STATE_666;            INC B13, NOP
+STATE_668;            *;  STATE_675;            TDEC U5
+STATE_675;            Z;  STATE_674;            NOP
+STATE_675;            NZ; STATE_675;            TDEC U5
+STATE_674;            *;  STATE_677;            TDEC B13
+STATE_677;            Z;  STATE_676;            NOP
+STATE_677;            NZ; STATE_677;            TDEC B13
+STATE_676;            *;  STATE_679;            TDEC U4
+STATE_679;            Z;  STATE_678;            TDEC U13
+STATE_679;            NZ; STATE_678;            NOP
+STATE_678;            *;  STATE_681;            TDEC U11
+STATE_681;            Z;  STATE_682;            TDEC U13
+STATE_681;            NZ; STATE_707;            INC U11, NOP
+STATE_682;            Z;  STATE_680;            NOP
+STATE_682;            NZ; STATE_684;            NOP
+STATE_684;            *;  STATE_685;            TDEC U50
+STATE_685;            Z;  STATE_683;            NOP
+STATE_685;            NZ; STATE_685;            INC U5, INC U6, TDEC U50
+STATE_683;            *;  STATE_687;            TDEC U6
+STATE_687;            Z;  STATE_686;            NOP
+STATE_687;            NZ; STATE_687;            INC U50, TDEC U6
+STATE_686;            *;  STATE_689;            TDEC U5
+STATE_689;            Z;  STATE_688;            NOP
+STATE_689;            NZ; STATE_689;            INC B11, INC B13, TDEC U5
+STATE_688;            *;  STATE_691;            READ B13
+STATE_691;            Z;  STATE_692;            READ B11
+STATE_691;            NZ; STATE_696;            SET B13, NOP
+STATE_692;            Z;  STATE_693;            TDEC B11
+STATE_692;            NZ; STATE_695;            SET B11, INC U4, NOP
+STATE_693;            *;  STATE_694;            TDEC B13
+STATE_694;            Z;  STATE_690;            NOP
+STATE_694;            NZ; STATE_688;            NOP
+STATE_695;            *;  STATE_690;            NOP
+STATE_696;            *;  STATE_697;            READ B11
+STATE_697;            Z;  STATE_690;            NOP
+STATE_697;            NZ; STATE_698;            SET B11, NOP
+STATE_698;            *;  STATE_699;            TDEC B11
+STATE_699;            *;  STATE_700;            TDEC B13
+STATE_700;            Z;  STATE_690;            NOP
+STATE_700;            NZ; STATE_688;            NOP
+STATE_690;            *;  STATE_702;            TDEC B11
+STATE_702;            Z;  STATE_701;            NOP
+STATE_702;            NZ; STATE_702;            TDEC B11
+STATE_701;            *;  STATE_704;            TDEC B13
+STATE_704;            Z;  STATE_703;            NOP
+STATE_704;            NZ; STATE_704;            TDEC B13
+STATE_703;            *;  STATE_705;            TDEC U4
+STATE_705;            Z;  STATE_706;            INC U13, INC U7, NOP
+STATE_705;            NZ; STATE_680;            INC U7, NOP
+STATE_706;            *;  STATE_680;            INC U7, NOP
+STATE_707;            *;  STATE_708;            TDEC U13
+STATE_708;            Z;  STATE_710;            NOP
+STATE_708;            NZ; STATE_680;            INC U13, NOP
+STATE_710;            *;  STATE_711;            TDEC U50
+STATE_711;            Z;  STATE_709;            NOP
+STATE_711;            NZ; STATE_711;            INC U5, INC U6, TDEC U50
+STATE_709;            *;  STATE_713;            TDEC U6
+STATE_713;            Z;  STATE_712;            NOP
+STATE_713;            NZ; STATE_713;            INC U50, TDEC U6
+STATE_712;            *;  STATE_715;            TDEC U5
+STATE_715;            Z;  STATE_714;            NOP
+STATE_715;            NZ; STATE_715;            INC B11, INC B13, TDEC U5
+STATE_714;            *;  STATE_717;            READ B13
+STATE_717;            Z;  STATE_718;            READ B11
+STATE_717;            NZ; STATE_722;            SET B13, NOP
+STATE_718;            Z;  STATE_719;            TDEC B11
+STATE_718;            NZ; STATE_721;            SET B11, INC U4, NOP
+STATE_719;            *;  STATE_720;            TDEC B13
+STATE_720;            Z;  STATE_716;            NOP
+STATE_720;            NZ; STATE_714;            NOP
+STATE_721;            *;  STATE_716;            NOP
+STATE_722;            *;  STATE_723;            READ B11
+STATE_723;            Z;  STATE_716;            NOP
+STATE_723;            NZ; STATE_724;            SET B11, NOP
+STATE_724;            *;  STATE_725;            TDEC B11
+STATE_725;            *;  STATE_726;            TDEC B13
+STATE_726;            Z;  STATE_716;            NOP
+STATE_726;            NZ; STATE_714;            NOP
+STATE_716;            *;  STATE_728;            TDEC B11
+STATE_728;            Z;  STATE_727;            NOP
+STATE_728;            NZ; STATE_728;            TDEC B11
+STATE_727;            *;  STATE_730;            TDEC B13
+STATE_730;            Z;  STATE_729;            NOP
+STATE_730;            NZ; STATE_730;            TDEC B13
+STATE_729;            *;  STATE_731;            TDEC U4
+STATE_731;            Z;  STATE_732;            INC U7, NOP
+STATE_731;            NZ; STATE_680;            INC U13, INC U7, NOP
+STATE_732;            *;  STATE_680;            INC U7, NOP
+STATE_680;            *;  STATE_734;            TDEC U7
+STATE_734;            Z;  STATE_736;            NOP
+STATE_734;            NZ; STATE_751;            TDEC U7
+STATE_736;            *;  STATE_737;            TDEC U50
+STATE_737;            Z;  STATE_735;            NOP
+STATE_737;            NZ; STATE_737;            INC U4, INC U5, TDEC U50
+STATE_735;            *;  STATE_739;            TDEC U5
+STATE_739;            Z;  STATE_738;            NOP
+STATE_739;            NZ; STATE_739;            INC U50, TDEC U5
+STATE_738;            *;  STATE_741;            TDEC U4
+STATE_741;            Z;  STATE_740;            NOP
+STATE_741;            NZ; STATE_742_WHILE_BODY; NOP
+STATE_742_WHILE_BODY; *;  STATE_744;            READ B11
+STATE_744;            Z;  STATE_743;            NOP
+STATE_744;            NZ; STATE_743;            SET B11, ADD A1, NOP
+STATE_743;            *;  STATE_747;            READ B13
+STATE_747;            Z;  STATE_746;            ADD B0
+STATE_747;            NZ; STATE_746;            ADD B1
+STATE_746;            Z;  STATE_745;            NOP
+STATE_746;            NZ; STATE_745;            SET B13, NOP
+STATE_745;            *;  STATE_738;            INC B11, INC B13, NOP
+STATE_740;            *;  STATE_749;            TDEC B11
+STATE_749;            Z;  STATE_748;            NOP
+STATE_749;            NZ; STATE_749;            TDEC B11
+STATE_748;            *;  STATE_750;            TDEC B13
+STATE_750;            Z;  STATE_733;            NOP
+STATE_750;            NZ; STATE_750;            TDEC B13
+STATE_751;            Z;  STATE_753;            NOP
+STATE_751;            NZ; STATE_769;            NOP
+STATE_753;            *;  STATE_754;            TDEC U50
+STATE_754;            Z;  STATE_752;            NOP
+STATE_754;            NZ; STATE_754;            INC U5, INC U4, TDEC U50
+STATE_752;            *;  STATE_756;            TDEC U4
+STATE_756;            Z;  STATE_755;            NOP
+STATE_756;            NZ; STATE_756;            INC U50, TDEC U4
+STATE_755;            *;  STATE_758;            TDEC U5
+STATE_758;            Z;  STATE_757;            NOP
+STATE_758;            NZ; STATE_759_WHILE_BODY; NOP
+STATE_759_WHILE_BODY; *;  STATE_761;            READ B11
+STATE_761;            Z;  STATE_760;            NOP
+STATE_761;            NZ; STATE_760;            SET B11, SUB A1, NOP
+STATE_760;            *;  STATE_764;            READ B13
+STATE_764;            Z;  STATE_763;            SUB B0
+STATE_764;            NZ; STATE_763;            SUB B1
+STATE_763;            Z;  STATE_762;            NOP
+STATE_763;            NZ; STATE_762;            SET B13, NOP
+STATE_762;            *;  STATE_755;            INC B11, INC B13, NOP
+STATE_757;            *;  STATE_766;            TDEC B11
+STATE_766;            Z;  STATE_765;            NOP
+STATE_766;            NZ; STATE_766;            TDEC B11
+STATE_765;            *;  STATE_767;            TDEC B13
+STATE_767;            Z;  STATE_733;            NOP
+STATE_767;            NZ; STATE_767;            TDEC B13
+STATE_769;            *;  STATE_770;            TDEC U50
+STATE_770;            Z;  STATE_768;            NOP
+STATE_770;            NZ; STATE_770;            INC U5, INC U4, TDEC U50
+STATE_768;            *;  STATE_772;            TDEC U4
+STATE_772;            Z;  STATE_771;            NOP
+STATE_772;            NZ; STATE_772;            INC U50, TDEC U4
+STATE_771;            *;  STATE_774;            TDEC U5
+STATE_774;            Z;  STATE_773;            NOP
+STATE_774;            NZ; STATE_775_WHILE_BODY; NOP
+STATE_775_WHILE_BODY; *;  STATE_777;            READ B13
+STATE_777;            Z;  STATE_776;            NOP
+STATE_777;            NZ; STATE_776;            SUB A1, NOP
+STATE_776;            *;  STATE_780;            READ B11
+STATE_780;            Z;  STATE_779;            SUB B0
+STATE_780;            NZ; STATE_779;            SET B11, SUB B1
+STATE_779;            Z;  STATE_778;            NOP
+STATE_779;            NZ; STATE_778;            SET B13, NOP
+STATE_778;            *;  STATE_771;            INC B13, INC B11, NOP
+STATE_773;            *;  STATE_782;            TDEC B13
+STATE_782;            Z;  STATE_781;            NOP
+STATE_782;            NZ; STATE_782;            TDEC B13
+STATE_781;            *;  STATE_783;            TDEC B11
+STATE_783;            Z;  STATE_733;            NOP
+STATE_783;            NZ; STATE_783;            TDEC B11
+STATE_733;            *;  STATE_785;            TDEC U50
+STATE_785;            Z;  STATE_784;            NOP
+STATE_785;            NZ; STATE_785;            INC U5, INC U6, TDEC U50
+STATE_784;            *;  STATE_787;            TDEC U6
+STATE_787;            Z;  STATE_786;            NOP
+STATE_787;            NZ; STATE_787;            INC U50, TDEC U6
+STATE_786;            *;  STATE_789;            TDEC U5
+STATE_789;            Z;  STATE_788;            NOP
+STATE_789;            NZ; STATE_790_WHILE_BODY; NOP
+STATE_790_WHILE_BODY; *;  STATE_792;            READ B13
+STATE_792;            Z;  STATE_791;            NOP
+STATE_792;            NZ; STATE_793;            SET B13, INC U4, NOP
+STATE_793;            *;  STATE_788;            NOP
+STATE_791;            *;  STATE_786;            INC B13, NOP
+STATE_788;            *;  STATE_795;            TDEC U5
+STATE_795;            Z;  STATE_794;            NOP
+STATE_795;            NZ; STATE_795;            TDEC U5
+STATE_794;            *;  STATE_797;            TDEC B13
+STATE_797;            Z;  STATE_796;            NOP
+STATE_797;            NZ; STATE_797;            TDEC B13
+STATE_796;            *;  STATE_799;            TDEC U4
+STATE_799;            Z;  STATE_798;            TDEC U13
+STATE_799;            NZ; STATE_798;            NOP
+STATE_798;            *;  STATE_801;            TDEC U50
+STATE_801;            Z;  STATE_800;            NOP
+STATE_801;            NZ; STATE_801;            INC U5, INC U4, TDEC U50
+STATE_800;            *;  STATE_803;            TDEC U4
+STATE_803;            Z;  STATE_802;            NOP
+STATE_803;            NZ; STATE_803;            INC U50, TDEC U4
+STATE_802;            *;  STATE_805;            TDEC U5
+STATE_805;            Z;  STATE_804;            NOP
+STATE_805;            NZ; STATE_806_WHILE_BODY; NOP
+STATE_806_WHILE_BODY; *;  STATE_808;            READ B14
+STATE_808;            Z;  STATE_807;            READ B12
+STATE_808;            NZ; STATE_809;            SET B14, READ B12
+STATE_809;            *;  STATE_807;            SET B12, NOP
+STATE_807;            *;  STATE_802;            INC B14, INC B12, NOP
+STATE_804;            *;  STATE_811;            TDEC B14
+STATE_811;            Z;  STATE_810;            NOP
+STATE_811;            NZ; STATE_811;            TDEC B14
+STATE_810;            *;  STATE_813;            TDEC B12
+STATE_813;            Z;  STATE_812;            NOP
+STATE_813;            NZ; STATE_813;            TDEC B12
+STATE_812;            *;  STATE_814;            TDEC U12
+STATE_814;            *;  STATE_815;            TDEC U14
+STATE_815;            Z;  STATE_51;             NOP
+STATE_815;            NZ; STATE_51;             INC U14, INC U12, NOP
+STATE_53;             *;  STATE_817;            TDEC U4
+STATE_817;            Z;  STATE_816;            SET B2D, NOP
+STATE_817;            NZ; STATE_816;            NOP
+STATE_816;            *;  STATE_819;            TDEC U3
+STATE_819;            Z;  STATE_818;            NOP
+STATE_819;            NZ; STATE_819;            TDEC U3
+STATE_818;            *;  STATE_821;            TDEC U10
+STATE_821;            Z;  STATE_823;            NOP
+STATE_821;            NZ; STATE_827;            INC U10, NOP
+STATE_823;            *;  STATE_824;            READ B10
+STATE_824;            Z;  STATE_825;            SET B10, NOP
+STATE_824;            NZ; STATE_823;            INC B10, NOP
+STATE_825;            *;  STATE_822;            NOP
+STATE_822;            *;  STATE_826;            TDEC B10
+STATE_826;            Z;  STATE_820;            NOP
+STATE_826;            NZ; STATE_826;            TDEC B10
+STATE_827;            *;  STATE_829;            READ B10
+STATE_829;            Z;  STATE_830;            SET B10, NOP
+STATE_829;            NZ; STATE_828;            NOP
+STATE_830;            *;  STATE_827;            INC B10, NOP
+STATE_828;            *;  STATE_831;            TDEC B10
+STATE_831;            Z;  STATE_820;            NOP
+STATE_831;            NZ; STATE_831;            TDEC B10
+STATE_820;            *;  STATE_833;            TDEC U50
+STATE_833;            Z;  STATE_832;            NOP
+STATE_833;            NZ; STATE_833;            INC U4, INC U5, TDEC U50
+STATE_832;            *;  STATE_835;            TDEC U5
+STATE_835;            Z;  STATE_834;            NOP
+STATE_835;            NZ; STATE_835;            INC U50, TDEC U5
+STATE_834;            *;  STATE_837;            TDEC U4
+STATE_837;            Z;  STATE_836;            NOP
+STATE_837;            NZ; STATE_838_WHILE_BODY; NOP
+STATE_838_WHILE_BODY; *;  STATE_840;            READ B10
+STATE_840;            Z;  STATE_839;            NOP
+STATE_840;            NZ; STATE_841;            SET B10, INC U3, NOP
+STATE_841;            *;  STATE_836;            NOP
+STATE_839;            *;  STATE_834;            INC B10, NOP
+STATE_836;            *;  STATE_843;            TDEC U4
+STATE_843;            Z;  STATE_842;            NOP
+STATE_843;            NZ; STATE_843;            TDEC U4
+STATE_842;            *;  STATE_845;            TDEC B10
+STATE_845;            Z;  STATE_844;            NOP
+STATE_845;            NZ; STATE_845;            TDEC B10
+STATE_844;            *;  STATE_847;            TDEC U3
+STATE_847;            Z;  STATE_846;            TDEC U10
+STATE_847;            NZ; STATE_846;            NOP
+STATE_846;            *;  STATE_10;             INC B2DX, NOP
+STATE_12;             *;  STATE_849;            TDEC B2DX
+STATE_849;            Z;  STATE_848;            NOP
+STATE_849;            NZ; STATE_849;            TDEC B2DX
+STATE_848;            *;  STATE_850;            INC B2DY, NOP
+STATE_850;            *;  STATE_852;            TDEC U50
+STATE_852;            Z;  STATE_851;            NOP
+STATE_852;            NZ; STATE_852;            INC U3, INC U4, TDEC U50
+STATE_851;            *;  STATE_854;            TDEC U4
+STATE_854;            Z;  STATE_853;            NOP
+STATE_854;            NZ; STATE_854;            INC U50, TDEC U4
+STATE_853;            *;  STATE_856;            TDEC U3
+STATE_856;            Z;  STATE_855;            NOP
+STATE_856;            NZ; STATE_857_WHILE_BODY; NOP
+STATE_857_WHILE_BODY; *;  STATE_858;            READ B10
+STATE_858;            *;  STATE_853;            INC B10, NOP
+STATE_855;            *;  STATE_860;            TDEC B10
+STATE_860;            Z;  STATE_859;            NOP
+STATE_860;            NZ; STATE_860;            TDEC B10
+STATE_859;            *;  STATE_861;            INC B10, NOP
+STATE_861;            *;  STATE_862;            INC B10, NOP
+STATE_862;            *;  STATE_863;            INC B10, NOP
+STATE_863;            *;  STATE_864;            INC B10, NOP
+STATE_864;            *;  STATE_865;            INC B10, NOP
+STATE_865;            *;  STATE_866;            SET B10, NOP
+STATE_866;            *;  STATE_868;            TDEC B10
+STATE_868;            Z;  STATE_867;            NOP
+STATE_868;            NZ; STATE_868;            TDEC B10
+STATE_867;            *;  STATE_869;            INC U10, NOP
+STATE_869;            *;  STATE_871;            TDEC U11
+STATE_871;            Z;  STATE_873;            NOP
+STATE_871;            NZ; STATE_877;            INC U11, NOP
+STATE_873;            *;  STATE_874;            READ B11
+STATE_874;            Z;  STATE_875;            SET B11, NOP
+STATE_874;            NZ; STATE_873;            INC B11, NOP
+STATE_875;            *;  STATE_872;            NOP
+STATE_872;            *;  STATE_876;            TDEC B11
+STATE_876;            Z;  STATE_870;            NOP
+STATE_876;            NZ; STATE_876;            TDEC B11
+STATE_877;            *;  STATE_879;            READ B11
+STATE_879;            Z;  STATE_880;            SET B11, NOP
+STATE_879;            NZ; STATE_878;            NOP
+STATE_880;            *;  STATE_877;            INC B11, NOP
+STATE_878;            *;  STATE_881;            TDEC B11
+STATE_881;            Z;  STATE_870;            NOP
+STATE_881;            NZ; STATE_881;            TDEC B11
+STATE_870;            *;  STATE_883;            TDEC U50
+STATE_883;            Z;  STATE_882;            NOP
+STATE_883;            NZ; STATE_883;            INC U4, INC U5, TDEC U50
+STATE_882;            *;  STATE_885;            TDEC U5
+STATE_885;            Z;  STATE_884;            NOP
+STATE_885;            NZ; STATE_885;            INC U50, TDEC U5
+STATE_884;            *;  STATE_887;            TDEC U4
+STATE_887;            Z;  STATE_886;            NOP
+STATE_887;            NZ; STATE_888_WHILE_BODY; NOP
+STATE_888_WHILE_BODY; *;  STATE_890;            READ B11
+STATE_890;            Z;  STATE_889;            NOP
+STATE_890;            NZ; STATE_891;            SET B11, INC U3, NOP
+STATE_891;            *;  STATE_886;            NOP
+STATE_889;            *;  STATE_884;            INC B11, NOP
+STATE_886;            *;  STATE_893;            TDEC U4
+STATE_893;            Z;  STATE_892;            NOP
+STATE_893;            NZ; STATE_893;            TDEC U4
+STATE_892;            *;  STATE_895;            TDEC B11
+STATE_895;            Z;  STATE_894;            NOP
+STATE_895;            NZ; STATE_895;            TDEC B11
+STATE_894;            *;  STATE_896;            TDEC U3
+STATE_896;            Z;  STATE_4;              TDEC U11
+STATE_896;            NZ; STATE_4;              NOP
+STATE_END;            *;  STATE_END;            HALT_OUT
