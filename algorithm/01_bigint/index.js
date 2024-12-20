@@ -1,6 +1,6 @@
 // @ts-check
 
-export {};
+export {}
 
 const $canvas = document.querySelector("#canvas");
 if (!($canvas instanceof HTMLCanvasElement)) {
