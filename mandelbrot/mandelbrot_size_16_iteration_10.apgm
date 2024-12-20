@@ -628,7 +628,7 @@ macro ALLOC_NUM!() 50
 macro CX_B!() 10
 macro CX_SIGN!() 10
 
-/* Initial value: CX = -(2^(SIZE+1)) */
+/* Initial value: CY = -(2^(SIZE+1)) */
 macro CY_B!() 11
 macro CY_SIGN!() 11
 
