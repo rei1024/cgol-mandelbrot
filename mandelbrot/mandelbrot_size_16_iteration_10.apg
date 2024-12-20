@@ -1,7 +1,7 @@
 # Mandelbrot set renderer
 # 2024-12-20 (Rei): Created
 #COMPONENTS U0-7, U10-15, U50-52, B10-16, ADD, SUB, MUL, B2D
-#REGISTERS { "U0": 64, "U50": 16, "U51": 10, "U52": 7, "U10": 1, "B10": [0, "000001"], "U11": 1, "B11": [0, "000001"] }
+#REGISTERS { "U0": 64, "U50": 16, "U51": 10, "U52": 6, "U10": 1, "B10": [0, "000001"], "U11": 1, "B11": [0, "000001"] }
 # State    Input    Next state    Actions
 # ---------------------------------------
 INITIAL;              ZZ; STATE_1;              NOP

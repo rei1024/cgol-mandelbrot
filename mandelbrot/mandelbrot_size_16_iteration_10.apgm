@@ -39,8 +39,6 @@ macro u_to_0!(n) {
 
 /**
  * copy bits from Bfrom to Bto
- *  temp_u1 is U9 on MULA
- *  temp_u2 is U7 on MULA
  */
 macro copy_binary!(from, to, temp_u1, temp_u2) {
     copy_u!(ALLOC_NUM!(), temp_u2, temp_u1);
@@ -513,9 +511,11 @@ macro draw!() {
         copy_binary!(Y_B!(), TEMP_B2!(), 4, 5);
         tdec_u(TEMP_B2_SIGN!()); /* square is positive */
 
+        /* TEMP_B1 = X^2 */
         mul_b_b_self!(TEMP_B1!(), X_B!(), ALLOC_NUM!(), TEMP_B10!(), 4, 5, 6, 7);
         binary_zero!(TEMP_B10!(), 4, 5);
 
+        /* TEMP_B2 = Y^2 */
         mul_b_b_self!(TEMP_B2!(), Y_B!(), ALLOC_NUM!(), TEMP_B10!(), 4, 5, 6, 7);
         binary_zero!(TEMP_B10!(), 4, 5);
 
@@ -524,12 +524,14 @@ macro draw!() {
 
         is_greater_than_or_equal_power!(TEMP_B1!(), DIVERGE_LIMIT_LOG2_U!(), 4, 5, 6, 7);
         if_nz (tdec_u(4)) {
+            /* diverged */
             inc_u(4);
             break();
         }
 
         is_greater_than_or_equal_power!(TEMP_B2!(), DIVERGE_LIMIT_LOG2_U!(), 4, 5, 6, 7);
         if_nz (tdec_u(4)) {
+            /* diverged */
             inc_u(4);
             break();
         }
@@ -581,9 +583,15 @@ U12: Sign of current x value
 U13: Sign of current y value
 
 B10: Current cx value (absolute)
+  Initial value is -SIZE * 2
 B11: Current cy value (absolute)
+  Initial value is -SIZE * 2
 B12: Current x value (absolute)
 B13: Current y value (absolute)
+
+U50: Binary number allocated bits
+U51: Number of iterations
+U52: log_2(SIZE) + 2
 */
 
 /*
@@ -606,7 +614,7 @@ macro SIZE_LOG2_MINUS_1!() 3
 /* log_2(SIZE) + 1 = 5 */
 macro SIZE_LOG2_PLUS_1!() 5
 
-/* U52 */
+/* U52 = log_2(SIZE) + 2 = 6 */
 macro DIVERGE_LIMIT_LOG2_U!() 52
 
 /* U50
@@ -615,6 +623,7 @@ macro DIVERGE_LIMIT_LOG2_U!() 52
  */
 macro ALLOC_NUM!() 50
 
+/* c = cx + cy * i */
 /* Initial value: CX = -(2^(SIZE+1)) */
 macro CX_B!() 10
 macro CX_SIGN!() 10
@@ -623,6 +632,7 @@ macro CX_SIGN!() 10
 macro CY_B!() 11
 macro CY_SIGN!() 11
 
+/* z = x + y * i */
 macro X_B!() 12
 macro X_SIGN!() 12
 macro Y_B!() 13
@@ -635,7 +645,7 @@ macro TEMP_B2_SIGN!() 15
 macro TEMP_B10!() 16
 
 #COMPONENTS U0-7, U10-15, U50-52, B10-16, ADD, SUB, MUL, B2D
-#REGISTERS { "U0": 64, "U50": 16, "U51": 10, "U52": 7, "U10": 1, "B10": [0, "000001"], "U11": 1, "B11": [0, "000001"] }
+#REGISTERS { "U0": 64, "U50": 16, "U51": 10, "U52": 6, "U10": 1, "B10": [0, "000001"], "U11": 1, "B11": [0, "000001"] }
 
 copy_u!(SIZE_TIMES_4_U!(), 1, 2);
 
@@ -643,6 +653,7 @@ while_nz (tdec_u(1)) {
     copy_u!(SIZE_TIMES_4_U!(), 2, 3);
     while_nz (tdec_u(2)) {
         draw!();
+        /* CX += 1 */
         add_1_signed!(CX_B!(), CX_SIGN!(), 3, 4, 5);
         inc_b2dx();
     }
@@ -658,5 +669,6 @@ while_nz (tdec_u(1)) {
         inc_u(CX_SIGN!());
     };
 
+    /* CY += 1 */
     add_1_signed!(CY_B!(), CY_SIGN!(), 3, 4, 5);
 }
