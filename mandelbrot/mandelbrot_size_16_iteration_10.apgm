@@ -251,15 +251,15 @@ macro add_1_signed!(binary, binary_sign, temp_u1, temp_u2, temp_u3) {
     if_nz (tdec_u(binary_sign)) {
         inc_u(binary_sign);
         sub_1_from_binary!(binary);
+
+        /* fix negative zero */
+        binary_is_not_zero!(binary, temp_u1, temp_u2, temp_u3);
+        if_z (tdec_u(temp_u1)) {
+            /* zero is non negative */
+            tdec_u(binary_sign);
+        }
     } else {
         add_1_to_binary!(binary);
-    }
-
-    /* fix negative zero */
-    binary_is_not_zero!(binary, temp_u1, temp_u2, temp_u3);
-    if_z (tdec_u(temp_u1)) {
-        /* zero is non negative */
-        tdec_u(binary_sign);
     }
 }
 
@@ -309,7 +309,7 @@ macro mul_b_b_self!(
     binary, small_binary, small_binary_max_pointer, temp_binary,
     temp_u1, temp_u2, temp_u3, temp_u4) {
     copy_binary!(binary, temp_binary, temp_u1, temp_u2);
-    binary_zero!(binary, temp_u1, temp_u2);
+    binary_zero!(binary);
     mul_b_b!(
         temp_binary,
         small_binary,
@@ -325,7 +325,7 @@ macro mul_b_b_self!(
 macro mul_b_b_signed!(binary1, binary1_sign, binary2, binary2_sign,
   temp_binary, temp_u1, temp_u2, temp_u3, temp_u4) {
     mul_b_b_self!(binary1, binary2, ALLOC_NUM!(), temp_binary, temp_u1, temp_u2, temp_u3, temp_u4);
-    binary_zero!(temp_binary, temp_u1, temp_u2);
+    binary_zero!(temp_binary);
 
     /* set sign */
 
@@ -352,15 +352,14 @@ macro mul_b_b_signed!(binary1, binary1_sign, binary2, binary2_sign,
 }
 
 /* Set all bits to 0 */
-macro binary_zero!(binary, temp_u1, temp_u2) {
-    copy_u!(ALLOC_NUM!(), temp_u1, temp_u2);
-
-    while_nz (tdec_u(temp_u1)) {
-        read_b(binary);
+macro binary_zero!(binary) {
+    while_nz (tdec_u(ALLOC_NUM!())) {
         inc_b(binary);
     }
-
-    b_head_to_0!(binary);
+    while_nz (tdec_b(binary)) {
+        read_b(binary);
+        inc_u(ALLOC_NUM!());
+    }
 }
 
 /* out_is_not_zero_u = 1 if binary is not zero */
@@ -513,11 +512,11 @@ macro draw!() {
 
         /* TEMP_B1 = X^2 */
         mul_b_b_self!(TEMP_B1!(), X_B!(), ALLOC_NUM!(), TEMP_B10!(), 4, 5, 6, 7);
-        binary_zero!(TEMP_B10!(), 4, 5);
+        binary_zero!(TEMP_B10!());
 
         /* TEMP_B2 = Y^2 */
         mul_b_b_self!(TEMP_B2!(), Y_B!(), ALLOC_NUM!(), TEMP_B10!(), 4, 5, 6, 7);
-        binary_zero!(TEMP_B10!(), 4, 5);
+        binary_zero!(TEMP_B10!());
 
         right_shift_binary!(TEMP_B1!(), SIZE_LOG2!(), 4, 5);
         right_shift_binary!(TEMP_B2!(), SIZE_LOG2!(), 4, 5);
@@ -662,7 +661,7 @@ while_nz (tdec_u(1)) {
 
     {
         /* CX = -SIZE * 2 */
-        binary_zero!(CX_B!(), 3, 4);
+        binary_zero!(CX_B!());
         repeat(SIZE_LOG2_PLUS_1!(), inc_b(CX_B!()));
         set_b(CX_B!());
         b_head_to_0!(CX_B!());
