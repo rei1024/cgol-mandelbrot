@@ -9,10 +9,10 @@
 ## Files
 
 ### `mandelbrot`
-- `mandelbrot_size_16_iteration_10.apgm`: APGM code
-- `mandelbrot_size_16_iteration_10.apg`: APGSembly 2.0 code
-- `mandelbrot_size_16_iteration_10_initial.mc.gz`: Initial pattern
-- `mandelbrot_size_16_iteration_10_render_finished_gen_2.1313122e14.mc.gz`: rendered pattern at generation 2.1313122e14
+- `mandelbrot.apgm`: APGM code
+- `mandelbrot.apg`: APGSembly 2.0 code
+- `mandelbrot_s_32_i_14.mc.gz`: Initial pattern
+- `TODO`: rendered pattern at generation TODO
 
 ### `algorithms`
 - Install [Deno](https://docs.deno.com/runtime/)

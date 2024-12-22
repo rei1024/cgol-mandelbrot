@@ -40,10 +40,9 @@ macro u_to_0!(n) {
 /**
  * copy bits from Bfrom to Bto
  */
-macro copy_binary!(from, to, temp_u1, temp_u2) {
-    copy_u!(ALLOC_NUM!(), temp_u2, temp_u1);
-
-    while_nz (tdec_u(temp_u2)) {
+macro copy_binary!(from, to, temp_u1) {
+    while_nz (tdec_u(ALLOC_NUM!())) {
+        inc_u(temp_u1);
         if_z (read_b(from)) {
             read_b(to);
         } else {
@@ -56,6 +55,10 @@ macro copy_binary!(from, to, temp_u1, temp_u2) {
 
     b_head_to_0!(from);
     b_head_to_0!(to);
+
+    while_nz (tdec_u(temp_u1)) {
+        inc_u(ALLOC_NUM!()); /* recover */
+    }
 }
 
 /**
@@ -207,7 +210,10 @@ macro add_b!(binary1, binary2, temp_u1, temp_u2) {
     b_head_to_0!(binary2);
 }
 
-/* constant must be 1 or 2 */
+/*
+binary = binary + constant
+constant must be 1 or 2
+*/
 macro add_1_or_2_to_binary!(binary, constant) {
     repeat(constant, {
         loop {
@@ -228,12 +234,10 @@ macro add_1_to_binary!(binary) {
     add_1_or_2_to_binary!(binary, 1);
 }
 
-/* binary = binary + 2 */
-macro add_2_to_binary!(binary) {
-    add_1_or_2_to_binary!(binary, 2);
-}
-
-/* binary must not be zero */
+/*
+binary = binary - 1
+binary must not be zero
+*/
 macro sub_1_from_binary!(binary) {
     loop {
         if_z (read_b(binary)) {
@@ -308,7 +312,7 @@ macro mul_b_b!(
 macro mul_b_b_self!(
     binary, small_binary, small_binary_max_pointer, temp_binary,
     temp_u1, temp_u2, temp_u3, temp_u4) {
-    copy_binary!(binary, temp_binary, temp_u1, temp_u2);
+    copy_binary!(binary, temp_binary, temp_u1);
     binary_zero!(binary);
     mul_b_b!(
         temp_binary,
@@ -328,7 +332,6 @@ macro mul_b_b_signed!(binary1, binary1_sign, binary2, binary2_sign,
     binary_zero!(temp_binary);
 
     /* set sign */
-
     if_z (tdec_u(binary1_sign)) {
         /* + */
         if_z (tdec_u(binary2_sign)) {
@@ -358,7 +361,7 @@ macro binary_zero!(binary) {
     }
     while_nz (tdec_b(binary)) {
         read_b(binary);
-        inc_u(ALLOC_NUM!());
+        inc_u(ALLOC_NUM!()); /* recover */
     }
 }
 
@@ -495,21 +498,21 @@ macro copy_sign!(from, to) {
 macro draw!() {
     /* skip first iteration */
     /* X = CX */
-    copy_binary!(CX_B!(), X_B!(), 4, 5);
+    copy_binary!(CX_B!(), X_B!(), 4);
     copy_sign!(CX_SIGN!(), X_SIGN!());
 
     /* Y = CY */
-    copy_binary!(CY_B!(), Y_B!(), 4, 5);
+    copy_binary!(CY_B!(), Y_B!(), 4);
     copy_sign!(CY_SIGN!(), Y_SIGN!());
 
     copy_u!(ITERATION_U!(), 3, 4);
     while_nz (tdec_u(3)) {
-        copy_binary!(Y_B!(), TEMP_B2!(), 4, 5);
+        copy_binary!(Y_B!(), TEMP_B2!(), 4);
         tdec_u(TEMP_B2_SIGN!()); /* square is positive */
 
         /* TEMP_B2 = Y^2 */
         mul_b_b_self!(TEMP_B2!(), Y_B!(), ALLOC_NUM!(), TEMP_B10!(), 4, 5, 6, 7);
-        binary_zero!(TEMP_B10!());
+        /* binary_zero!(TEMP_B10!()); */
 
         right_shift_binary!(TEMP_B2!(), SIZE_LOG2!(), 4, 5);
 
@@ -520,12 +523,12 @@ macro draw!() {
             break();
         }
 
-        copy_binary!(X_B!(), TEMP_B1!(), 4, 5);
+        copy_binary!(X_B!(), TEMP_B1!(), 4);
         tdec_u(TEMP_B1_SIGN!()); /* square is positive */
 
         /* TEMP_B1 = X^2 */
         mul_b_b_self!(TEMP_B1!(), X_B!(), ALLOC_NUM!(), TEMP_B10!(), 4, 5, 6, 7);
-        binary_zero!(TEMP_B10!());
+        /* binary_zero!(TEMP_B10!()); */
 
         right_shift_binary!(TEMP_B1!(), SIZE_LOG2!(), 4, 5);
  
@@ -556,7 +559,7 @@ macro draw!() {
         /* y = y + cy */
         add_b_signed!(CY_B!(), CY_SIGN!(), Y_B!(), Y_SIGN!(), 4, 5, 6, 7);
         /* x = x temporary */
-        copy_binary!(TEMP_B1!(), X_B!(), 4, 5);
+        copy_binary!(TEMP_B1!(), X_B!(), 4);
         copy_sign!(TEMP_B1_SIGN!(), X_SIGN!());
     }
 
