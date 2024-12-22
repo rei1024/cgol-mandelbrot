@@ -16,7 +16,7 @@ if (context == null) {
 const SIZE = 2 ** 6;
 $canvas.width = SIZE * 4;
 $canvas.height = SIZE * 4;
-const ITERATION = 32;
+const ITERATION = 14;
 
 const DIVERGE_LIMIT = 4n * BigInt(SIZE);
 

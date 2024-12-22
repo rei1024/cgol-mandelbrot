@@ -180,7 +180,13 @@ macro add_b_signed!(binary1, binary1_sign, binary2, binary2_sign, temp_u1, temp_
 
 /**
  * binary2 = binary2 + binary1
- * binary2のheadを最初にずらしておくことでbinary1をシフトして加算できる
+ * 
+ * # Shifted addition
+ * ```
+ * repeat(n, inc_b(binary2));
+ * add_b!(binary1, binary2, temp_u1, temp_u2);
+ * ```
+ * -> binary2 = binary2 + (binary1 << n)
  */
 macro add_b!(binary1, binary2, temp_u1, temp_u2) {
     copy_u!(ALLOC_NUM!(), temp_u1, temp_u2);
