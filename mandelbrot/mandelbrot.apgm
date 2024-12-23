@@ -1,5 +1,5 @@
 /*
-    # Mandelbrot set renderer
+    # APGM code for Mandelbrot set renderer
     # 2024-12-21 (Rei): Created
 */
 
@@ -216,10 +216,10 @@ macro add_b!(binary1, binary2, temp_u1, temp_u2) {
     b_head_to_0!(binary2);
 }
 
-/*
-binary = binary + constant
-constant must be 1 or 2
-*/
+/**
+ * binary = binary + constant
+ * constant must be 1 or 2
+ */
 macro add_1_or_2_to_binary!(binary, constant) {
     repeat(constant, {
         loop {
@@ -240,10 +240,10 @@ macro add_1_to_binary!(binary) {
     add_1_or_2_to_binary!(binary, 1);
 }
 
-/*
-binary = binary - 1
-binary must not be zero
-*/
+/**
+ * binary = binary - 1
+ * binary must not be zero
+ */
 macro sub_1_from_binary!(binary) {
     loop {
         if_z (read_b(binary)) {

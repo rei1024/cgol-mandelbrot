@@ -1,5 +1,5 @@
 # Mandelbrot set renderer
-# 2024-12-21 (Rei): Created
+# 2024-12-21 (Rei): Compilied from 'mandelbrot.apgm'
 # SIZE = 32, ITERATION = 14
 #COMPONENTS U0-7, U10-15, U50-52, B10-16, ADD, SUB, MUL, B2D
 #REGISTERS { "U0": 128, "U50": 19, "U51": 14, "U52": 7, "U10": 1, "B10": [0, "0000001"], "U11": 1, "B11": [0, "0000001"] }
