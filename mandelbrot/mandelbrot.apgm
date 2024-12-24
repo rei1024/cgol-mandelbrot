@@ -500,7 +500,7 @@ macro copy_sign!(from, to) {
     }
 }
 
-/* draw one cell */
+/* draw one cell based on cx and cy */
 macro draw!() {
     /* skip first iteration */
     /* X = CX */
