@@ -12,7 +12,7 @@
 ### `mandelbrot`
 - `mandelbrot.apgm`: APGM code
 - `mandelbrot.apg`: APGSembly 2.0 code
-- `mandelbrot_s_32_i_14.mc.gz`: Initial pattern (gzipped macrocell format)
+- `mandelbrot_s32_i14.mc.gz`: Initial pattern (gzipped macrocell format)
 - `mandelbrot_s32_i14_rendered_gen_1.1092108e15.mc.gz`: rendered pattern at generation 1.1092108e15
 - `mandelbrot.rle`: extracted mandelbrot set pattern
 
